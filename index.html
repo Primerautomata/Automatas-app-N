@@ -146,8 +146,26 @@ select option{background:var(--surface2)}
 /* ── GRID PANELS ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:900px){.two-col,.three-col{grid-template-columns:1fr}nav{width:54px}.nav-item span{display:none}.nav-logo p,.nav-section,.nav-version{display:none}.nav-logo h1{font-size:0.7rem;text-align:center}}
-@media(max-width:600px){.page{padding:16px 14px 40px}.stats-grid{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.two-col,.three-col{grid-template-columns:1fr}}
+
+/* ── MOBILE NAV (bottom bar) ── */
+@media(max-width:700px){
+  .app-shell{flex-direction:column}
+  nav{width:100%;height:auto;border-right:none;border-top:1px solid var(--border);order:2;flex-direction:row;overflow-x:auto;overflow-y:hidden;padding:0;flex-shrink:0}
+  nav::-webkit-scrollbar{height:0}
+  .nav-logo,.nav-section,.nav-bottom,.nav-version{display:none}
+  main{order:1;flex:1;overflow-y:auto}
+  .nav-item{flex-direction:column;gap:3px;padding:8px 6px;margin:0;border-radius:0;border:none;min-width:60px;font-size:0.58rem;flex-shrink:0;border-bottom:2px solid transparent}
+  .nav-item .icon{font-size:18px;width:auto}
+  .nav-item span:not(.icon){display:block;font-size:0.58rem;letter-spacing:0;white-space:nowrap}
+  .nav-item.active{background:rgba(196,137,78,0.12);border-bottom-color:var(--wood);color:var(--wood-pale)}
+  .page{padding:14px 12px 20px}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .page-header{flex-direction:column;gap:10px}
+  .tabs{overflow-x:auto}.tabs::-webkit-scrollbar{height:0}
+  .tab-item{white-space:nowrap;padding:8px 12px}
+}
 
 /* ── EMPTY STATE ── */
 .empty{text-align:center;padding:40px 20px;color:var(--ink3)}
@@ -185,6 +203,7 @@ select option{background:var(--surface2)}
   <div class="nav-item" data-page="materiales"><span class="icon">🪚</span><span>Materiales</span></div>
   <div class="nav-item" data-page="catalogo"><span class="icon">🏷️</span><span>Catálogo</span></div>
   <div class="nav-item" data-page="finanzas"><span class="icon">💰</span><span>Finanzas</span></div>
+  <div class="nav-item" data-page="ayuda"><span class="icon">📖</span><span>Cómo usar</span></div>
   <div class="nav-bottom">
     <div class="nav-version">v1.0 · datos locales</div>
   </div>
@@ -305,6 +324,115 @@ select option{background:var(--surface2)}
   <div class="tab-content active" id="tab-fin-semanal"><div id="fin-semanal-content"></div></div>
   <div class="tab-content" id="tab-fin-mensual"><div id="fin-mensual-content"></div></div>
   <div class="tab-content" id="tab-fin-resumen"><div id="fin-resumen-content"></div></div>
+</div>
+
+<!-- AYUDA -->
+<div class="page" id="page-ayuda">
+  <div class="page-header">
+    <div><div class="page-title">Cómo usar la app</div><div class="page-subtitle">Guía completa para gestionar tu negocio de autómatas</div></div>
+  </div>
+
+  <div style="display:grid;gap:16px">
+
+    <!-- PASO 1 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:32px;height:32px;background:rgba(196,137,78,0.2);border:1px solid rgba(196,137,78,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">1️⃣</div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">Empezá por el Catálogo</div><div style="font-size:0.78rem;color:var(--ink3);margin-top:2px">Cargá los productos que vendés antes de registrar pedidos</div></div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        Andá a <strong style="color:var(--wood-pale)">🏷️ Catálogo</strong> → <strong style="color:var(--wood-pale)">+ Nuevo producto</strong>. Cargá el nombre de tu autómata, el precio de venta y el costo de materiales. La app calcula el margen automáticamente.<br><br>
+        <span style="color:var(--ink3)">Ejemplo: "Autómata Leva Circular" → Precio: $18.000 → Costo: $4.500 → Margen: 75%</span>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:32px;height:32px;background:rgba(196,137,78,0.2);border:1px solid rgba(196,137,78,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">2️⃣</div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">Registrá tus clientes</div><div style="font-size:0.78rem;color:var(--ink3);margin-top:2px">Opcional pero muy útil para llevar historial</div></div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        Andá a <strong style="color:var(--wood-pale)">👥 Clientes</strong> → <strong style="color:var(--wood-pale)">+ Nuevo cliente</strong>. Guardá nombre, WhatsApp, Instagram y ciudad.<br><br>
+        También podés crear un cliente <strong style="color:var(--wood-pale)">directamente desde el formulario de pedido</strong> eligiendo "Nuevo cliente..." en el selector.
+      </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:32px;height:32px;background:rgba(196,137,78,0.2);border:1px solid rgba(196,137,78,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">3️⃣</div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">Registrá cada pedido</div><div style="font-size:0.78rem;color:var(--ink3);margin-top:2px">El corazón de la app</div></div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        Hacé clic en <strong style="color:var(--wood-pale)">+ Nuevo pedido</strong> desde el Dashboard o la sección Pedidos.<br><br>
+        <strong style="color:var(--wood-pale)">Tipo Encargo:</strong> pedido a fabricar para un cliente específico con fecha de entrega.<br>
+        <strong style="color:var(--wood-pale)">Tipo Venta de stock:</strong> vendiste algo que ya tenías hecho, sin cliente asignado.<br><br>
+        Al elegir el producto, el precio y costo se cargan solos. Podés editar si cambiaron. La señal/anticipo se descuenta del total automáticamente.
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:32px;height:32px;background:rgba(196,137,78,0.2);border:1px solid rgba(196,137,78,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">4️⃣</div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">Avanzá el estado de cada pedido</div><div style="font-size:0.78rem;color:var(--ink3);margin-top:2px">Seguí el progreso de fabricación</div></div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        En la tabla de pedidos, el botón <strong style="color:var(--wood-pale)">→</strong> avanza el estado al siguiente paso:<br><br>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+          <span class="badge badge-gray">Pendiente</span>
+          <span style="color:var(--ink3)">→</span>
+          <span class="badge badge-blue">En proceso</span>
+          <span style="color:var(--ink3)">→</span>
+          <span class="badge badge-green">Listo</span>
+          <span style="color:var(--ink3)">→</span>
+          <span class="badge badge-gray">Entregado</span>
+        </div>
+        Cuando un pedido llega a <strong style="color:var(--green)">Entregado</strong>, se suma a tus ingresos y ganancias en Finanzas.
+      </div>
+    </div>
+
+    <!-- PASO 5 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:32px;height:32px;background:rgba(196,137,78,0.2);border:1px solid rgba(196,137,78,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">5️⃣</div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">Usá el Dashboard como punto de partida</div><div style="font-size:0.78rem;color:var(--ink3);margin-top:2px">Todo lo importante en una pantalla</div></div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        El <strong style="color:var(--wood-pale)">📊 Dashboard</strong> muestra de un vistazo:<br><br>
+        🔔 <strong style="color:var(--wood-pale)">Entregas próximas</strong> en rojo (atrasado), amarillo (1-2 días) o verde (tiempo de sobra).<br>
+        📦 <strong style="color:var(--wood-pale)">Pedidos activos</strong> con monto y estado.<br>
+        📈 <strong style="color:var(--wood-pale)">Gráfico de ingresos</strong> de las últimas 8 semanas.<br>
+        🪚 <strong style="color:var(--wood-pale)">Materiales a comprar</strong> según lo que tenés en producción.
+      </div>
+    </div>
+
+    <!-- PASO 6 -->
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
+        <div style="width:32px;height:32px;background:rgba(196,137,78,0.2);border:1px solid rgba(196,137,78,0.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">6️⃣</div>
+        <div><div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--ink)">Revisá Finanzas regularmente</div><div style="font-size:0.78rem;color:var(--ink3);margin-top:2px">Para saber si tu negocio es rentable</div></div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        En <strong style="color:var(--wood-pale)">💰 Finanzas</strong> podés ver ingresos, costos y ganancias por semana, mes o total histórico.<br><br>
+        El <strong style="color:var(--wood-pale)">margen</strong> te dice qué porcentaje del precio de venta es ganancia real después de descontar materiales. Un margen sano para autómatas de madera es <strong style="color:var(--green)">entre 60% y 80%</strong>.
+      </div>
+    </div>
+
+    <!-- INFO DATOS -->
+    <div class="card" style="border-color:rgba(196,137,78,0.3);background:rgba(196,137,78,0.05)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="font-size:18px">💾</span>
+        <div style="font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--wood-pale)">¿Dónde se guardan los datos?</div>
+      </div>
+      <div style="font-size:0.83rem;color:var(--ink2);line-height:1.7">
+        Todos los datos se guardan <strong style="color:var(--wood-pale)">en tu dispositivo</strong> (localStorage del navegador). No se envían a ningún servidor.<br><br>
+        ⚠️ <strong style="color:var(--yellow)">Importante:</strong> si borrás los datos del navegador o usás modo incógnito, los datos se pierden. Se recomienda usar siempre el mismo navegador en el mismo dispositivo. En el futuro podés exportar los datos con la función de backup.
+      </div>
+    </div>
+
+  </div>
 </div>
 
 </main>
@@ -468,35 +596,6 @@ function ars(n){return '$'+Math.round(n||0).toLocaleString('es-AR')}
 function uid(prefix){return prefix+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,7)}
 
 // ══════════════════════════════════════════════════════
-// SEED DATA (only if empty)
-// ══════════════════════════════════════════════════════
-function seedIfEmpty(){
-  if(DB.clientes.length>0)return;
-  const clientes=[
-    {id:'cli-1',nombre:'María González',tel:'+54 11 4567-8901',contacto:'@mariag',ciudad:'Buenos Aires',notas:'Le gustan los diseños con animales',creado:Date.now()-86400000*30},
-    {id:'cli-2',nombre:'Carlos Ruiz',tel:'+54 351 234-5678',contacto:'carlos@mail.com',ciudad:'Córdoba',notas:'Comprador frecuente',creado:Date.now()-86400000*60},
-    {id:'cli-3',nombre:'Laura Martínez',tel:'+54 11 9876-5432',contacto:'@lauram_art',ciudad:'Rosario',notas:'Quiere kit para regalar',creado:Date.now()-86400000*10},
-  ];
-  const productos=[
-    {id:'prod-1',nombre:'Autómata Leva Circular',categoria:'Autómata completo',precio:18000,costo:4500,tiempo:4,stock:2,desc:'Pino 2x10 (80cm), tornillos 4mm, eje de acero 8mm, pintura'},
-    {id:'prod-2',nombre:'Autómata Manivela y Biela',categoria:'Autómata completo',precio:22000,costo:5500,tiempo:5,stock:0,desc:'Pino 2x10 (120cm), biela de pino, tornillos, lija 120'},
-    {id:'prod-3',nombre:'Kit Engranajes para Armar',categoria:'Kit de piezas',precio:9500,costo:2200,tiempo:2,stock:5,desc:'Pino cortado CNC, 2 engranajes, manual impreso'},
-    {id:'prod-4',nombre:'Taller Introductorio',categoria:'Taller / Clase',precio:12000,costo:1500,tiempo:3,stock:99,desc:'Incluye materiales para 1 autómata básico'},
-  ];
-  const hoy=new Date();
-  const pedidos=[
-    {id:'ped-1',tipo:'encargo',clienteId:'cli-1',productoId:'prod-1',cantidad:1,precio:18000,costo:4500,senal:5000,estado:'en_proceso',fecha:new Date(hoy.getTime()+86400000*5).toISOString().split('T')[0],notas:'Con pintura azul',creado:Date.now()-86400000*3},
-    {id:'ped-2',tipo:'encargo',clienteId:'cli-2',productoId:'prod-2',cantidad:2,precio:22000,costo:5500,senal:0,estado:'pendiente',fecha:new Date(hoy.getTime()+86400000*2).toISOString().split('T')[0],notas:'',creado:Date.now()-86400000*5},
-    {id:'ped-3',tipo:'encargo',clienteId:'cli-3',productoId:'prod-3',cantidad:1,precio:9500,costo:2200,senal:9500,estado:'listo',fecha:new Date(hoy.getTime()+86400000*1).toISOString().split('T')[0],notas:'Para regalo, necesita envoltorio',creado:Date.now()-86400000*7},
-    {id:'ped-4',tipo:'stock',clienteId:null,productoId:'prod-1',cantidad:1,precio:18000,costo:4500,senal:18000,estado:'entregado',fecha:new Date(hoy.getTime()-86400000*3).toISOString().split('T')[0],notas:'Venta en feria',creado:Date.now()-86400000*10},
-    {id:'ped-5',tipo:'encargo',clienteId:'cli-1',productoId:'prod-4',cantidad:3,precio:12000,costo:1500,senal:18000,estado:'entregado',fecha:new Date(hoy.getTime()-86400000*10).toISOString().split('T')[0],notas:'Grupo de 3 personas',creado:Date.now()-86400000*20},
-  ];
-  DB.clientes=clientes;DB.productos=productos;DB.pedidos=pedidos;
-  DB.nextPedId=6;DB.nextCliId=4;DB.nextProdId=5;
-  saveDB();
-}
-
-// ══════════════════════════════════════════════════════
 // NAV
 // ══════════════════════════════════════════════════════
 document.querySelectorAll('.nav-item').forEach(item=>{
@@ -517,6 +616,7 @@ function renderPage(page){
   else if(page==='materiales')renderMateriales();
   else if(page==='catalogo')renderCatalogo();
   else if(page==='finanzas')renderFinanzas();
+  // ayuda page is static HTML, no render needed
 }
 
 // TABS
@@ -1035,7 +1135,7 @@ document.querySelectorAll('[onclick="openModal(\'modal-pedido\')"]').forEach(btn
 // ══════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════
-loadDB();seedIfEmpty();populateSelects();renderDashboard();
+loadDB();populateSelects();renderDashboard();
 </script>
 </body>
 </html>
